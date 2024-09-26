@@ -26,7 +26,64 @@ interface Teacher {
     location: 'New York',
     contract: true,  // extra property
   };
-  
-  console.log(teacher1);
-  console.log(teacher2);
+
+// Define the Directors interface that extends Teacher
+interface Directors extends Teacher {
+  numberOfReports: number; // required for Directors
+}
+
+const director1: Directors = {
+  firstName: 'John',
+  lastName: 'Doe',
+  location: 'London',
+  fullTimeEmployee: true,
+  numberOfReports: 17,
+};
+
+// Define the printTeacherFunction interface
+interface printTeacherFunction {
+  (firstName: string, lastName: string): string;
+}
+
+const printTeacher: printTeacherFunction = (firstName: string, lastName: string): string => {
+  return `${firstName.charAt(0)}. ${lastName}`;
+};
+
+interface StudentClassInterface {
+  firstName: string;
+  lastName: string;
+  workOnHomework(): string;
+  displayName(): string;
+}
+
+// Implement the StudentClass
+class StudentClass implements StudentClassInterface {
+  firstName: string;
+  lastName: string;
+
+  constructor(firstName: string, lastName: string) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  workOnHomework(): string {
+    return 'Currently working';
+  }
+
+  displayName(): string {
+    return this.firstName;
+  }
+}
+
+const student = new StudentClass('John', 'Doe');
+console.log(student.displayName());
+console.log(student.workOnHomework());
+
+
+console.log(printTeacher("John", "Doe"));
+
+
+console.log(director1);
+console.log(teacher1);
+console.log(teacher2);
   
